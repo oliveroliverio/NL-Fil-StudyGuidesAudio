@@ -77,9 +77,43 @@ To handle your need for different prompts (Stories vs. Lessons) or experimental 
     *   Create a workflow that listens to the distilled folder.
     *   Connect it to ElevenLabs.
 
-## 5. Why this helps your ADHD
-*   **Instant Gratification**: You hit "Save", and 30 seconds later, audio appears.
-*   **Separation of Concerns**:
-    *   When you feel creative? Just write Markdown in `z-Content-Raw`.
-    *   When you feel like engineering? Go into n8n and tweak the nodes.
-*   **No Context Switching**: You stay in your text editor for the creative work. The "terminal" is gone.
+## 6. Git Integration & Version Control
+You love your Git history, and we should keep it pristine. n8n can handle this in two ways:
+
+### A. Auto-Committing Generated Content
+When n8n generates a new script or audio file, it can automatically commit it.
+1.  **Node**: `Execute Command`.
+2.  **Command**:
+    ```bash
+    git add z-Content-Distilled/ output/
+    git commit -m "🤖 n8n: Generated audio for [filename]"
+    ```
+3.  **Benefit**: Your git log becomes a history of your *automated* productivity.
+
+### B. Versioning n8n Workflows
+n8n workflows are just JSON. We should save them to your repo so you don't lose them.
+1.  **The `n8n/` Directory**: We've created a dedicated folder for this.
+    *   `n8n/workflows/`: Export your workflows here.
+    *   `n8n/scripts/`: Any helper python scripts n8n might call.
+    *   `n8n/backups/`: Auto-backups of your n8n database (optional).
+2.  **The Workflow**:
+    *   You can set up a simple n8n workflow that triggers on "Workflow Saved".
+    *   It exports the current workflow to `n8n/workflows/[name].json`.
+    *   It runs `git add n8n/workflows/ && git commit -m "Update n8n workflow"`.
+
+## 7. Recommended Project Structure
+We will organize the new automation components as follows:
+
+```text
+.
+├── n8n/                      # [NEW] n8n artifacts
+│   ├── workflows/            # JSON exports of your flows
+│   └── scripts/              # Helper scripts for the pipeline
+├── z-Content-Raw/            # Your creative sandbox (Markdown)
+├── z-Content-Distilled/      # AI-generated scripts (Markdown)
+├── z-Prompts/                # Your "Source Code" for the AI
+│   ├── 04_Distill_Lesson.md
+│   ├── 05_Distill_Story.md
+│   └── ...
+└── output/                   # Final Audio Files
+```
