@@ -1,0 +1,27 @@
+# Audio Generation System Configuration
+
+# Transcript Generation Settings
+transcript:
+  default_model: "gpt-4o" # or gpt-3.5-turbo
+  temperature: 0.7
+  system_prompt_path: "z-Prompts/transcript_system_prompt.md" # We will create this
+
+# Audio Generation Settings
+audio:
+  provider: "local" # Options: openai, local
+  output_format: "mp3"
+  
+  # OpenAI Specific Settings
+  openai:
+    voice: "alloy" # alloy, echo, fable, onyx, nova, shimmer
+    model: "tts-1-hd" # tts-1 or tts-1-hd
+
+  # Local TTS Settings (Placeholder for now)
+  local:
+    engine: "gtts"
+    lang: "en"
+
+# Paths
+paths:
+  output_dir: "output"
+  logs_dir: "logs"

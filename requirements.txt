@@ -1,0 +1,6 @@
+openai
+pyyaml
+python-dotenv
+rich
+gtts
+pydub
