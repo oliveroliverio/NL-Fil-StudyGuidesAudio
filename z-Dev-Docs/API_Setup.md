@@ -29,6 +29,14 @@ We use **ElevenLabs** for "audiobook-quality" speech synthesis.
 5.  **Copy the Key**:
     *   Paste it into your `.env` file as `ELEVENLABS_API_KEY`.
 
+### Recommended Permissions
+If you are creating a restricted key (recommended), ensure the following permissions are enabled:
+*   **Text to Speech**: `Access` (Required for generating audio)
+*   **Voices**: `Read` (Required for listing available voices)
+*   **Models**: `Read` (Required for selecting models)
+*   **History**: `Read` (Recommended for tracking usage)
+*   **User**: `Read` (Recommended for checking subscription status)
+
 ## 3. Configure Your Environment
 1.  **Duplicate the Example**:
     ```bash
