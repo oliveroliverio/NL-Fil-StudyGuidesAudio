@@ -1,5 +1,5 @@
-## Extenting the story
-Next, I'd like to extend this story... I wonder if this gemini prompt, copy paste prompt workflow is inefficient... I wonder if I can n8n this workflow to make it more efficient. Write a markdown document that converts this entire workflow into an n8n workflow, and place inside z-dev-doc
+## Questionining this entire workflow
+Next, I'd like to extend this story...But first.. I wonder if this gemini prompt, copy paste prompt workflow is inefficient... I wonder if I can n8n this workflow to make it more efficient. Write a markdown document that converts this entire workflow into an n8n workflow, and place inside z-dev-doc
 
 
 ## creating distilled content
