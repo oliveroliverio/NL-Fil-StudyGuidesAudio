@@ -37,7 +37,18 @@ def main():
         # We might want to strip lines starting with # for better experience, but let's see.
         # For now, let's strip lines starting with # to avoid reading headers.
         lines = [line for line in text.split('\n') if not line.strip().startswith('#')]
-        clean_text = "\n".join(lines)
+        
+        # Strip speaker labels (e.g., "**Narrator**:", "**Teacher**:")
+        # We assume the format is "**Speaker**:" or "**Speaker**: Text"
+        import re
+        clean_lines = []
+        for line in lines:
+            # Remove bold speaker labels at the start of the line
+            # Regex: Start of line, optional whitespace, **, any chars, **, colon, optional whitespace
+            cleaned_line = re.sub(r'^\s*\*\*.*?\*\*:\s*', '', line)
+            clean_lines.append(cleaned_line)
+            
+        clean_text = "\n".join(clean_lines)
 
         engine = TTSEngine()
         engine.generate_audio(clean_text, args.output)

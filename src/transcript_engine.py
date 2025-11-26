@@ -73,13 +73,15 @@ class TranscriptEngine:
         else:
             raise ValueError(f"Unknown transcript provider: {provider_name}")
 
-    def generate_transcript(self, input_file: str, output_file: str = None) -> str:
+    def generate_transcript(self, input_file: str, output_file: str = None, system_prompt_path: str = None) -> str:
         """
         Generates a transcript from a markdown file.
         """
         raw_content = read_markdown_file(input_file)
         
-        system_prompt_path = self.config['transcript']['system_prompt_path']
+        if not system_prompt_path:
+            system_prompt_path = self.config['transcript']['system_prompt_path']
+            
         system_prompt = read_markdown_file(system_prompt_path)
         
         user_prompt = f"Here is the raw content:\n\n{raw_content}"

@@ -11,6 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate audio transcript from markdown.")
     parser.add_argument("input_file", help="Path to the input markdown file")
     parser.add_argument("--output", "-o", help="Path to the output transcript file", default=None)
+    parser.add_argument("--system-prompt", "-p", help="Path to a custom system prompt file", default=None)
     
     args = parser.parse_args()
     
@@ -20,10 +21,12 @@ def main():
         args.output = f"output/{base_name}_transcript.md"
 
     console.print(f"[bold green]Generating transcript for:[/bold green] {args.input_file}")
+    if args.system_prompt:
+        console.print(f"[bold yellow]Using custom system prompt:[/bold yellow] {args.system_prompt}")
     
     try:
         engine = TranscriptEngine()
-        transcript = engine.generate_transcript(args.input_file, args.output)
+        transcript = engine.generate_transcript(args.input_file, args.output, args.system_prompt)
         console.print(f"[bold blue]Transcript saved to:[/bold blue] {args.output}")
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {e}")
