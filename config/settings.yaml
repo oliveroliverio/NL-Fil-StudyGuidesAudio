@@ -3,7 +3,7 @@
 # Transcript Generation Settings
 transcript:
   provider: "gemini" # Options: openai, gemini
-  default_model: "gemini-1.5-pro" # or gpt-4o
+  default_model: "gemini-flash-latest" # Fallback model
   temperature: 0.7
   system_prompt_path: "z-Prompts/01_transcript_system_prompt.md"
   
@@ -11,7 +11,7 @@ transcript:
     model: "gpt-4o"
 
   gemini:
-    model: "gemini-1.5-pro"
+    model: "gemini-flash-latest"
 
 # Audio Generation Settings
 audio:

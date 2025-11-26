@@ -1,3 +1,11 @@
 .venv/
 __pycache__
 .env
+
+# Generated Media
+*.mp3
+*.wav
+*.m4a
+output/
+TTS_Model_Distillation/datasets/
+TTS_Model_Distillation/checkpoints/
