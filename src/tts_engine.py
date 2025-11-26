@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from openai import OpenAI
 from gtts import gTTS
 from pathlib import Path
+from elevenlabs import ElevenLabs
 
 class TTSProvider(ABC):
     @abstractmethod
@@ -31,6 +32,23 @@ class LocalTTSProvider(TTSProvider):
         tts = gTTS(text=text, lang=self.config['audio']['local']['lang'])
         tts.save(output_file)
 
+class ElevenLabsTTSProvider(TTSProvider):
+    def __init__(self, config):
+        self.config = config
+        self.client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
+
+    def generate_audio(self, text: str, output_file: str):
+        audio_generator = self.client.text_to_speech.convert(
+            text=text,
+            voice_id=self.config['audio']['elevenlabs']['voice_id'],
+            model_id=self.config['audio']['elevenlabs']['model']
+        )
+        
+        # ElevenLabs returns a generator of bytes
+        with open(output_file, 'wb') as f:
+            for chunk in audio_generator:
+                f.write(chunk)
+
 class TTSEngine:
     def __init__(self, config_path="config/settings.yaml"):
         self.config = self._load_config(config_path)
@@ -46,6 +64,8 @@ class TTSEngine:
             return OpenAITTSProvider(self.config)
         elif provider_name == 'local':
             return LocalTTSProvider(self.config)
+        elif provider_name == 'elevenlabs':
+            return ElevenLabsTTSProvider(self.config)
         else:
             raise ValueError(f"Unknown TTS provider: {provider_name}")
 

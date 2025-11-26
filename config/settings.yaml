@@ -2,13 +2,20 @@
 
 # Transcript Generation Settings
 transcript:
-  default_model: "gpt-4o" # or gpt-3.5-turbo
+  provider: "gemini" # Options: openai, gemini
+  default_model: "gemini-1.5-pro" # or gpt-4o
   temperature: 0.7
-  system_prompt_path: "z-Prompts/transcript_system_prompt.md" # We will create this
+  system_prompt_path: "z-Prompts/01_transcript_system_prompt.md"
+  
+  openai:
+    model: "gpt-4o"
+
+  gemini:
+    model: "gemini-1.5-pro"
 
 # Audio Generation Settings
 audio:
-  provider: "local" # Options: openai, local
+  provider: "elevenlabs" # Options: openai, local, elevenlabs
   output_format: "mp3"
   
   # OpenAI Specific Settings
@@ -20,6 +27,11 @@ audio:
   local:
     engine: "gtts"
     lang: "en"
+
+  # ElevenLabs Settings
+  elevenlabs:
+    voice_id: "JBFqnCBsd6RMkjVDRZzb" # Example ID (Rachel), change as needed
+    model: "eleven_multilingual_v2"
 
 # Paths
 paths:
