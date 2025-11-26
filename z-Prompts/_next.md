@@ -1,1 +1,0 @@
-I think I want to switch to the Gemini 3 API rather than OpenAI. 
