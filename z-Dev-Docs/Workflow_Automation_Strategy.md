@@ -42,6 +42,20 @@ We will build a workflow that watches your `z-Content-Raw` folder.
     *   **Refinement Loop (Optional)**: "Critique this script. Is it natural? If not, rewrite."
 5.  **Write File**: Save the output to `z-Content-Distilled/[filename]_script.md`.
 
+### Dynamic Prompting: Experimentation without Complexity
+To handle your need for different prompts (Stories vs. Lessons) or experimental ones, we will use a **Tag-Based Routing System**.
+
+1.  **The Trigger**: You add a tag to your raw filename or content (e.g., `my_story_#story.md` or `my_lesson_#lesson.md`).
+2.  **The Router**: The n8n workflow detects this tag.
+3.  **The Loader**: n8n reads the corresponding prompt file from `z-Prompts/`.
+    *   `#story` -> loads `05_Distill_Story_Script.md`
+    *   `#lesson` -> loads `04_Distill_Lesson_Script.md`
+    *   `#experimental` -> loads `06_Experimental.md`
+4.  **The Benefit**: You don't change the workflow to test a new idea. You just:
+    *   Create `z-Prompts/07_New_Idea.md`.
+    *   Save your content as `test_#newidea.md`.
+    *   The system automatically pairs them.
+
 #### **Phase 2: The Producer (Script -> Audio)**
 1.  **Trigger**: `Local File Trigger` (Watch `z-Content-Distilled/*.md` for changes).
 2.  **Parser**: Extract `**Speaker**:` blocks (using a Code Node or Regex).
