@@ -1,0 +1,30 @@
+# Core PyTorch with CUDA support (assuming CUDA 12.x for RTX 6000 Ada)
+torch>=2.1.0 --index-url https://download.pytorch.org/whl/cu121
+torchaudio>=2.1.0 --index-url https://download.pytorch.org/whl/cu121
+torchvision>=0.16.0 --index-url https://download.pytorch.org/whl/cu121
+
+# Data Processing
+pandas
+numpy
+scipy
+librosa
+soundfile
+tqdm
+
+# Model & Training
+transformers
+accelerate
+datasets
+pyyaml
+wandb
+tensorboard
+matplotlib
+
+# TTS Specific (Coqui TTS as a base or reference)
+# Note: Coqui TTS can be heavy, we might want to install it from source or specific version if needed.
+# For now, we'll list it, but often it's better to clone it.
+TTS
+
+# Notebooks
+jupyterlab
+ipywidgets
