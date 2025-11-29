@@ -11,6 +11,11 @@ Write a markdown document that explains my plight, asssess the issues and explor
 
 This is great!  But what about the issue of experimenting with various prompts?  Note, how I have various prompts depending on the kind of audiobook I'd like to create, is there a way to add this into the n8n workflow whilst minimizing complexity?  
 
+---
+Thanks for adding that feature.  Another thing when implementing n8n.  I do like the git versioning I'm currently doing.  Is it possible to add this into the n8n workflow?  For example, make an n8n change, commit the changes with a message, and so on?  I also would like to add n8n artifacts to this project but in an organized fashion.  Should I have a dedicated folder for all n8n related things like this: @n8n  
+
+Feel free to modify or add to @Workflow_Automation_Strategy.md 
+
 ## creating distilled content
 
 How do we move forward with this project?  I renamed content directories to z-Content-Raw and z-Content-Distilled where raw content is original markdown files containing unstructured lessons, and z-Content-Distilled is where you (or another LLM) processes the raw-content and distills it into a structured format (in this case, transcriptions that will be sent to Elevenlabs for audio generation).  I have example distilled content in... but this was for generating PDF study guides.  The question is, how should this content be structured for audio generation?  And what prompt should I give you (or another LLM) to generate this distilled content? 
